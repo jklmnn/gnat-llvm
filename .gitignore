@@ -1,4 +1,13 @@
 # Build/test results directories
+llvm-interface/bin
+llvm-interface/lib
+llvm-interface/obj-tools
+llvm/gen
+llvm/out
+llvm/llvm-obj
+testsuite/out
+testsuite/output
+testsuite/srccov
 alis.list
 obj
 

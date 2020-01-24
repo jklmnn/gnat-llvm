@@ -1,0 +1,3 @@
+[submodule "llvm-interface/gcc"]
+	path = llvm-interface/gcc
+	url = git://gcc.gnu.org/git/gcc.git
