@@ -5,7 +5,6 @@ llvm-backend/gnat_src
 llvm-interface/bin
 llvm-interface/lib
 llvm-interface/obj-tools
-llvm-interface/gnat_src
 llvm/gen
 llvm/out
 llvm/llvm-obj
