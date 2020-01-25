@@ -25,15 +25,21 @@ GNAT LLVM has been built successfully on GNU/Linux and Mac OS Mojave x86_64
 native targets, using LLVM 9.0.0. Do not hesitate to report success
 on other configurations.
 
+Tensilica Xtensa support
+========================
+
+This fork aims to provide Ada support for the ESP8266 and ESP32 chips by
+using the [LLVM Xtensa backend](https://github.com/espressif/llvm-project).
+
 Building
 --------
 
 To build GNAT LLVM from sources, follow these steps:
 
-- Obtain a check out of the GNAT sources from gcc.gnu.org under the
-  llvm-interface directory:
+- Obtain a check out of the GNAT sources from gcc.gnu.org and the
+  Xtensa LLVM backend
 
-      $ svn co svn://gcc.gnu.org/svn/gcc/trunk/gcc/ada llvm-interface/gnat_src
+      $ git submodule update --init --recursive
 
 - Install (and put in your PATH) a recent GNAT, e.g GNAT Community 2019 or
   GCC 8
@@ -90,6 +96,10 @@ Usage
 - To generate native assembly file (will generate a .s file):
 
       $ llvm-gcc -S file.adb
+
+- To build for Xtensa:
+
+      $ llvm-gnatmake -c unit.adb -cargs --target=xtensa -mcpu=esp8266
 
 License
 -------
