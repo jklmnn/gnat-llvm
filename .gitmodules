@@ -1,3 +1,6 @@
 [submodule "llvm-interface/gcc"]
 	path = llvm-interface/gcc
 	url = git://gcc.gnu.org/git/gcc.git
+[submodule "llvm/llvm-xtensa"]
+	path = llvm/llvm-xtensa
+	url = https://github.com/espressif/llvm-project.git
