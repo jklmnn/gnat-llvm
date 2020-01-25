@@ -6,19 +6,11 @@
 PWD:=$(shell pwd)
 TMP_GEN_DIR=gen
 OUT_DIR=out
-LLVM_RELEASE=9.0.1
+#LLVM_RELEASE=9.0.1
 LLVM_SRC_DIR=$(LLVM_GIT_DIR)/llvm
-LLVM_CLANG_EXP_NAME=clang-$(LLVM_RELEASE).src
 LLVM_INCLUDE_DIR=$(PWD)/$(LLVM_SRC_DIR)/include
 LLVM_INCLUDE_DIR_C=$(LLVM_INCLUDE_DIR)/llvm-c
-DL=wget
-LLVM_SRC_FNAME=$(LLVM_SRC_DIR).tar.xz
-LLVM_CLANG_SRC_FNAME=$(LLVM_CLANG_EXP_NAME).tar.xz
-LLVM_GIT_LINK=https://github.com/espressif/llvm-project.git
 LLVM_GIT_DIR=llvm-xtensa
-LLVM_RELEASE_URL=http://releases.llvm.org/$(LLVM_RELEASE)
-LLVM_SRC_LINK=$(LLVM_RELEASE_URL)/$(LLVM_SRC_FNAME)
-LLVM_CLANG_SRC_LINK=$(LLVM_RELEASE_URL)/$(LLVM_CLANG_SRC_FNAME)
 
 .PHONY: configure
 
@@ -34,17 +26,6 @@ CONFIGURE=cd llvm-obj && CXX=g++ CC=gcc CXXC=g++ \
   -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD="Xtensa" ../$(LLVM_SRC_DIR)
 
 setup: $(LLVM_SRC_DIR) llvm-obj
-
-$(LLVM_SRC_DIR): 
-	#$(DL) $(LLVM_SRC_LINK)
-	#tar xJf $(LLVM_SRC_FNAME)
-	git clone $(LLVM_GIT_LINK) $(LLVM_GIT_DIR)
-	#ln -s $(LLVM_GIT_DIR)/clang $(LLVM_SRC_DIR)/tools/clang
-	#rm $(LLVM_SRC_FNAME)
-	#$(DL) $(LLVM_CLANG_SRC_LINK)
-	#tar xJf $(LLVM_CLANG_SRC_FNAME)
-	#mv $(LLVM_CLANG_EXP_NAME) $(LLVM_SRC_DIR)/tools/clang
-	#rm $(LLVM_CLANG_SRC_FNAME)
 
 llvm-obj:
 	mkdir -p llvm-obj
