@@ -41,33 +41,10 @@ To build GNAT LLVM from sources, follow these steps:
 
       $ git submodule update --init --recursive
 
-- Then obtain a check out of the latest GNAT sources from gcc.gnu.org under
-  the llvm-interface directory:
-
-      $ git clone git://gcc.gnu.org/git/gcc.git llvm-interface/gcc
-
-  then under non Windows systems:
-
-      $ ln -s gcc/gcc/ada llvm-interface/gnat_src
-
-  under Windows systems:
-
-      $ mv llvm-interface/gcc/gcc/ada llvm-interface/gnat_src
-
 - Install (and put in your PATH) a recent GNAT, e.g GNAT Community 2019,
   GCC 8 or GCC 9.
 
-- Install LLVM and Clang 9.0.1
-
-  The recommended way to build GNAT LLVM is to use an existing LLVM and clang
-  9.0.1 package install via e.g.  "brew install llvm" on Mac OS or
-  "sudo apt-get install llvm-dev" on Ubuntu. You can also build llvm yourself
-  with the options that suit your needs. After installing/building, make sure
-  the llvm bin directory containing llvm-config and clang is in your PATH.
-
-  As alternative only suitable for core GNAT LLVM development on x86 native
-  configurations only is to use the following command, assuming you have cmake
-  version >= 3.7.2 in your path:
+- Build the Xtensa LLVM backend
 
       $ make llvm
 
@@ -80,10 +57,19 @@ To build GNAT LLVM from sources, follow these steps:
 
       $ make
 
+  This command might fail sometimes, probably due to a bug that the build environment
+  fails to pick up the built clang binaries. In this case running `make` again
+  usually fixes the problem.
+
 This creates a "ready to use" set of directories "bin" and "lib" under
 llvm-interface which you can put in your PATH:
 
     PATH=$PWD/llvm-interface/bin:$PATH
+
+To be able to generate Xtensa binaries the locally built clang also has to be added to
+the PATH:
+
+    PATH=$PWD/llvm/llvm-obj/bin:$PATH
 
 - If you want in addition to generate bitcode for the GNAT runtime, you can do:
 
